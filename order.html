@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="defaultAddBox">
+
+    </div>
+    <button onclick="appear()">
+        Add another address
+    </button>
+    <div id="addAddress">
+     
+
+    </div>
+    <div id="paymentType">
+
+    </div>
+    <div id="cardDetails">
+        
+    </div>
+    <button id="proceed" onclick="proceed()">
+      Place Order
+    </button>
+
+</body>
+</html>
+
+<script>
+
+   var cookie = document.cookie;
+   var address = null;
+   if(cookie!="")
+   {
+    cookie = document.cookie.split("=")[1]; 
+    fetch('http://localhost:8765/buy_EZ/user/details', {
+    headers: {
+        'Authorization':`Bearer ${cookie}`
+    }
+   }).then((response) => {
+    if(response.ok)
+    {
+        return response.json();
+    }else{
+        return Promise.reject(response);
+    }
+   }).then((response) => {
+    console.log(response);
+    address = response.address;
+    var inputCheckbox = document.createElement('input');
+    inputCheckbox.type='checkbox';
+    inputCheckbox.value = `${response.address.details}, ${response.address.city}, ${response.address.state}, ${response.address.pincode}, ${response.country}`;
+    inputCheckbox.id = 'defaultAddress';
+    inputCheckbox.addEventListener('change', (e) => {
+        if(e.target.checked)
+        {
+            console.log('adfasd');
+            document.getElementById('addAddress').innerHTML = '';
+        }
+    })
+    var label = document.createElement('label')
+    label.setAttribute('for', 'defaultAddress');
+    label.innerText = `${response.address.details}, ${response.address.city}, ${response.address.state}, ${response.address.pincode}, ${response.country}`;
+     document.getElementById('defaultAddBox').append(inputCheckbox, label);
+   }).catch
+   ((response) => {
+    console.log('Error');
+   })
+    
+
+     function appear()
+     {
+        document.getElementById('addAddress').innerHTML = "";
+        document.getElementById('defaultAddress').checked = false;
+        var addressForm  = document.createElement('form');
+        var state = document.createElement('input');
+        state.setAttribute('required','');
+        state.placeholder = 'State'
+        state.type = 'text';
+        state.id = 'state';
+        var city = document.createElement('input');
+        city.setAttribute('required','');
+        city.placeholder = 'City'
+        city.type = 'text';
+        city.id = 'city';
+        var pincode = document.createElement('input');
+        pincode.setAttribute('required','');
+        pincode.placeholder = 'Pincode'
+        pincode.type = 'number';
+        pincode.id = 'pincode';
+        var details = document.createElement('input');
+        details.setAttribute('required','');
+        details.placeholder = 'Details'
+        details.type = 'text';
+        details.id = 'details';
+        
+
+        
+        addressForm.append(state, city, pincode, details);
+
+      document.getElementById('addAddress').append(addressForm);
+     }
+
+     function paymentsAppear()
+     {
+        fetch('http://localhost:8765/buy_EZ/user/payments').then(response => {
+            if(response.ok)
+            {
+                return response.json();
+            }
+            else{
+                return Promise.reject(response);
+            }
+        }).then(response => {
+            console.log(response)
+            let selectPayment = document.createElement('select');
+            selectPayment.id = 'payment';
+            
+            let payments = response;
+            for(let i=0 ; i<payments.length; i++)
+            {
+                let option = document.createElement('option');
+                if(payments[i].allowed == 'No')
+                {
+                    option.setAttribute('disabled', '');
+                }
+                option.className = 'paymentOptions';
+                option.innerText = payments[i].type;
+                selectPayment.append(option);
+            }
+            selectPayment.onchange = () => {
+                console.log(selectPayment.value)
+            }
+            document.getElementById('paymentType').append(selectPayment);
+        })
+     }
+     paymentsAppear();
+      
+     function proceed()
+     {
+        let checkBox = document.getElementById('defaultAddress');
+        if(checkBox.checked)
+        {
+            console.log(address);
+        }else{
+
+        }
+     }
+    
+   }
+   
+</script>
