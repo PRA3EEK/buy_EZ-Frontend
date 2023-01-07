@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .expiration input{
+        border: 0;
+        width: 50px;
+    }
+    #cardDetails>form{
+        border: 1px solid;
+        display: grid;
+        grid-template-columns: 100%;
+        width: 10%;
+    }
+</style>
 <body>
     <div id="defaultAddBox">
 
@@ -133,7 +145,35 @@
                 selectPayment.append(option);
             }
             selectPayment.onchange = () => {
+                document.getElementById('cardDetails').innerHTML = "";
                 console.log(selectPayment.value)
+                let cardDetailsForm = document.createElement('form');
+                let cardNumber = document.createElement('input');
+                cardNumber.placeholder = 'Card Number';
+                cardNumber.id = 'number';
+                let cardName = document.createElement('input');
+                cardName.placeholder = 'Name on the card'
+                cardName.id = 'name';
+                let parentSpan = document.createElement('span');
+                parentSpan.className = 'expiration'
+                let monthInput = document.createElement('input')
+                monthInput.placeholder = 'MM'
+                monthInput.id = 'month';
+                monthInput.type = 'number';
+                monthInput.setAttribute('maxlength', 2);
+                monthInput.size = 2;
+                let childSpan = document.createElement('span');
+                childSpan.innerText = '/';
+                let yearInput = document.createElement('input')
+                yearInput.placeholder = 'YY'
+                yearInput.id = 'month';
+                yearInput.type = 'number';
+                yearInput.setAttribute('maxlength', 2);
+                yearInput.size = 2;
+                parentSpan.append(monthInput, childSpan, yearInput);
+                cardDetailsForm.append(cardNumber, cardName, parentSpan);
+                document.getElementById('cardDetails').append(cardDetailsForm);
+
             }
             document.getElementById('paymentType').append(selectPayment);
         })
@@ -147,7 +187,7 @@
         {
             console.log(address);
         }else{
-
+             console.log(document.getElementById('number').value);
         }
      }
     
