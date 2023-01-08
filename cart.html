@@ -26,7 +26,7 @@
         .parent{
             display: grid;
             grid-template-columns: 20% 60%;
-            height: 35vh;
+            /* height: 35vh; */
         }
         .prodDetails{
            display: grid;
@@ -120,7 +120,7 @@
                 }
             }).then((res) => {
                 let products = res.cartProducts;
-                // console.log(res);
+                console.log(res);
 
                 for (let i = 0; i < products.length; i++) {
                     let id = products[i].productDtoId;

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #userForm{
+        width: 40%;
+        display: grid;
+        grid-template-columns: 1;
+        border: 1px solid;
+        margin: auto;
+     }
+     #userForm input{
+        margin-top: 10px;
+     }
+     #warnings{
+        display: none;
+     }
+     #warnings>ul>li>img{
+        /* width: 100%; */
+        /* border: 1px solid red; */
+        height: inherit;
+     }
+     #warnings>ul>li{
+        /* border: 1px solid; */
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 10% 80%;
+        height: 20px;
+     }
+     /* #password:focus #warnings{
+        display: block;
+     } */
+</style>
+<body>
+    
+   <form action="" id="userForm">
+  
+      <input type="text" placeholder="Username" id="username">
+      <input type="text" placeholder="First Name" id="firstname">
+      <input type="text" placeholder="Last Name" id="lastname">
+      <input type="text" placeholder="Set password" id="password" oninput="check()">
+      <div id="warnings">
+        <ul>
+            <li id="len"><img src="incorrect.png" alt="">Length of the password must be greater than 8.</li>
+            <li id="num"><img src="incorrect.png" alt="">Must contains a numeric value between 0-9.</li>
+            <li id="spe"><img src="incorrect.png" alt="">Must contains a special character like @#$%^&*()!</li>
+            <li id="low"><img src="incorrect.png" alt="">Must contains a lower case character [a-z]</li>
+            <li id="upp"><img src="incorrect.png" alt="">Must contains an upper case character [A-Z]</li>
+        </ul>
+      </div>
+      <input type="text" placeholder="Mobile Number" id="phone">
+      <input type="email" placeholder="Email address" id="email">
+      <div class="address">
+        <p>Address</p>
+        <input type="text" placeholder="Country" id="country">
+        <input type="text" placeholder="State" id="state">
+        <input type="text" placeholder="City" id="city">
+        <input type="text" placeholder="Pincode" id="pincode">
+        <input type="text" placeholder="Adress details" id="details">
+      </div>
+   </form>
+
+</body>
+</html>
+<script>
+  document.getElementById('password').onfocus = function ()
+  {
+    document.getElementById('warnings').style.display = 'block';
+  }
+
+  document.getElementById('password').onblur = function ()
+  {
+    document.getElementById('warnings').style.display = 'none';
+  }
+
+  function check()
+  {
+    var text = document.getElementById('password');
+
+
+     var uppercase = false;
+     var lowercase = false;
+     var special = false;
+     var numeric = false;
+     var greaterthan8 = false;
+
+     for(let i=0; i<text.length; i++)
+     {
+        if(text.length>=8)
+        {
+            greaterthan8 = true;
+        }
+        if(text[i]>="A" && text[i]<="Z")
+        {
+            uppercase = true;
+        }else if(text[i]>="a" && text[i]<="z")
+        {
+            lowercase = true;
+        }else if(text[i]>="0" && text[i]<="9")
+        {
+            numeric = true;
+        }else{
+            special = true;
+        }
+     }
+
+
+  }
+</script>
