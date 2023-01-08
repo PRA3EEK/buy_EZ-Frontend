@@ -68,48 +68,6 @@
 
 </body>
 </html>
-<script>
-  document.getElementById('password').onfocus = function ()
-  {
-    document.getElementById('warnings').style.display = 'block';
-  }
-
-  document.getElementById('password').onblur = function ()
-  {
-    document.getElementById('warnings').style.display = 'none';
-  }
-
-  function check()
-  {
-    var text = document.getElementById('password');
-
-
-     var uppercase = false;
-     var lowercase = false;
-     var special = false;
-     var numeric = false;
-     var greaterthan8 = false;
-
-     for(let i=0; i<text.length; i++)
-     {
-        if(text.length>=8)
-        {
-            greaterthan8 = true;
-        }
-        if(text[i]>="A" && text[i]<="Z")
-        {
-            uppercase = true;
-        }else if(text[i]>="a" && text[i]<="z")
-        {
-            lowercase = true;
-        }else if(text[i]>="0" && text[i]<="9")
-        {
-            numeric = true;
-        }else{
-            special = true;
-        }
-     }
-
-
-  }
+<script src="/scripts/AddAdmin.js">
+ 
 </script>
