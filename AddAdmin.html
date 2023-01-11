@@ -6,16 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
 <style>
+   *{
+      color: #272727;
+      font-family: 'Bakbak One';
+   }
     #userForm{
         width: 40%;
         display: grid;
         grid-template-columns: 1;
-        border: 1px solid;
+        /* border: 1px solid; */
         margin: auto;
      }
      #userForm input{
         margin-top: 10px;
+        height: 35px;
+        padding: 10px;
+        font-size: 15px;
      }
      #warnings{
         display: none;
@@ -41,29 +49,31 @@
     
    <form action="" id="userForm">
   
-      <input type="text" placeholder="Username" id="username">
-      <input type="text" placeholder="First Name" id="firstname">
-      <input type="text" placeholder="Last Name" id="lastname">
-      <input type="text" placeholder="Set password" id="password" oninput="check()">
+      <input type="text" placeholder="Username" id="username" required>
+      <input type="text" placeholder="First Name" id="firstname" required>
+      <input type="text" placeholder="Last Name" id="lastname" >
+      <input type="password" placeholder="Set password" id="password" oninput="check()" required>
       <div id="warnings">
         <ul>
             <li id="len"><img src="incorrect.png" alt="">Length of the password must be greater than 8.</li>
             <li id="num"><img src="incorrect.png" alt="">Must contains a numeric value between 0-9.</li>
-            <li id="spe"><img src="incorrect.png" alt="">Must contains a special character like @#$%^&*()!</li>
-            <li id="low"><img src="incorrect.png" alt="">Must contains a lower case character [a-z]</li>
-            <li id="upp"><img src="incorrect.png" alt="">Must contains an upper case character [A-Z]</li>
+            <li id="spe"><img src="incorrect.png" alt="">Must contains a special character like @#$%^&*()!.</li>
+            <li id="low"><img src="incorrect.png" alt="">Must contains a lower case character [a-z].</li>
+            <li id="upp"><img src="incorrect.png" alt="">Must contains an upper case character [A-Z].</li>
+            <li id="spa"><img src="incorrect.png" alt="">Must not contain any space.</li>
         </ul>
       </div>
-      <input type="text" placeholder="Mobile Number" id="phone">
-      <input type="email" placeholder="Email address" id="email">
-      <div class="address">
+      <input type="text" placeholder="Mobile Number" id="phone" required>
+      <input type="email" placeholder="Email address" id="email" required>
+      <div class="address" >
         <p>Address</p>
-        <input type="text" placeholder="Country" id="country">
-        <input type="text" placeholder="State" id="state">
-        <input type="text" placeholder="City" id="city">
-        <input type="text" placeholder="Pincode" id="pincode">
-        <input type="text" placeholder="Adress details" id="details">
+        <input type="text" placeholder="Country" id="country" required>
+        <input type="text" placeholder="State" id="state" required>
+        <input type="text" placeholder="City" id="city" required>
+        <input type="text" placeholder="Pincode" id="pincode" required>
+        <input type="text" placeholder="Adress details" id="details" required>
       </div>
+      <input type="submit" value="Add" id="submit">
    </form>
 
 </body>
