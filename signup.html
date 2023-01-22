@@ -5,34 +5,112 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
 </head>
+<style>
+  *{
+    padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Mukta', sans-serif;
+            
+          }
+          body{
+            background-color: #121212;
+          }
+#signUpForm{
+  /* position: fixed; */
+  /* border: 1px solid white; */
+  width: 30%;
+  margin: auto;
+  margin-top: 40px;
+  /* left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); */
+}
+.inputFields{
+  border: none;
+  background-color: #2d2d2d;
+  width: 100%;
+  height: 5vh;
+  padding: 5%;
+  margin-bottom: 2vh;
+  color: white;
+  letter-spacing: 0.3vh;
+  border-radius: 1vh;
+}
+
+#submit{
+  width: 30%;
+  border: 1px solid white;
+  color: white;
+  border-radius:   1vh;
+  height: 5vh;
+  cursor: pointer;
+  transition: 0.5s;
+  letter-spacing: 0.3vh;
+  background-color: #121212;
+}
+#submit:hover{
+  background-color: #2d2d2d;
+}
+#warnings{
+  background-color: #2d2d2d;
+  /* border: 1px solid white; */
+  margin-bottom: 2vh;
+  color: #797979;
+  border-radius: 1vh;
+  display: none;
+}
+#warnings>ul>li>img{
+ width: 100%;
+}
+#warnings>ul>li{
+  display: grid;
+  grid-template-columns: 5% 90%;
+  justify-content: space-around;
+}
+</style>
 <body>
     
     <form action="" id="signUpForm">
-      <input placeholder="username" type="text" id="username" required>
+      <input placeholder="Username" type="text" id="username" class="inputFields" required>
       <br>
-      <input type="text" placeholder="First Name" id="firstName" required>
+      <input type="text" placeholder="First Name" id="firstName" class="inputFields" required>
       <br>
-      <input type="text" placeholder="Last Name" id="lastName" required>
+      <input type="text" placeholder="Last Name" id="lastName" class="inputFields" required>
       <br>
-      <input placeholder="password" type="text" id="password" required>
+      <input placeholder="Password" type="text" id="password" class="inputFields" required oninput="check()">
+      
       <br>
-      <input placeholder="pincode" type="text" id="pincode" required>
+      <div id="warnings">
+        <ul>
+            <li id="len"><img src="incorrect.png" alt="">Length of the password must be greater than 8.</li>
+            <li id="num"><img src="incorrect.png" alt="">Must contains a numeric value between 0-9.</li>
+            <li id="spe"><img src="incorrect.png" alt="">Must contains a special character like @#$%^&*()!.</li>
+            <li id="low"><img src="incorrect.png" alt="">Must contains a lower case character [a-z].</li>
+            <li id="upp"><img src="incorrect.png" alt="">Must contains an upper case character [A-Z].</li>
+            <li id="spa"><img src="incorrect.png" alt="">Must not contain any space.</li>
+        </ul>
+      </div>
+      <input placeholder="Pincode" type="text" id="pincode" class="inputFields" required>
       <br>
-      <input type="text" id="state" placeholder="state" required>
+      <input type="text" id="state" placeholder="State" class="inputFields" required>
       <br>
-      <input type="text" id="city" placeholder="city" required>
+      <input type="text" id="city" placeholder="City" class="inputFields" required>
       <br>
-      <input type="text" placeholder="addressDetails" id="details" required>
+      <input type="text" placeholder="Address Details" id="details" class="inputFields" required>
       <br>
-      <input placeholder="mobileNumber" type="text" id="mobile" required>
+      <input placeholder="Mobile Number" type="text" id="mobile" class="inputFields" required>
       <br>
-      <input placeholder="email" type="text" id="email" required>
+      <input placeholder="Email" type="text" id="email" class="inputFields" required>
       <br>
-      <input type="text" placeholder="Country" id="country" required>
+      <input type="text" placeholder="Country" id="country" class="inputFields" required>
       <br>
       
-      <input type="submit" id="submit">
+      <input type="submit" id="submit" value="Sign-Up">
     </form>
 
 

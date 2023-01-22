@@ -59,6 +59,9 @@ if(cookie != "")
          div.append(a);
          a.className = "catLink";
          a.innerText = categories[i].categoryName;
+         div.addEventListener('click', () => {
+            fetch(`http://localhost:8765/buy_EZ/user/search?name=${categories[i].categoryName}`).then(response => {return response.json()}).then(response => {createBodyForPoducts(response)})
+         });
          document.getElementById("categories").append(div);
      }
  });
@@ -72,65 +75,10 @@ if(cookie != "")
      return response.json();
  }).then(response => {
      // console.log(response)
-     let arr = response;
-     for(let i=0 ; i<arr.length ; i++)
-     {
-         let div = document.createElement("div");
-         div.style.cursor="pointer";
-         div.onclick = function ()
-         {
-            window.location=`productView.html?productId=${arr[i].productId}`
 
-         }
-
-    let img = document.createElement("img");
-    let h5 = document.createElement("h5");
-    let h5_2 = document.createElement("h5");
-    let h5_3 = document.createElement("h5");
-    let h5_4 = document.createElement("h5");
-    let h5_5 = document.createElement("h5");
-    let btn = document.createElement("button");
-    btn.innerText = "Add to cart";
- 
-    btn.onclick =  function (){
-
-    fetch(`http://localhost:8765/buy_EZ/user/add-cart?productId=${arr[i].productId}&quantity=1`, {
-     method: 'POST',
-     headers:{
-         'Content-type':'application/json',
-         'Authorization':`Bearer ${cookie}`
-     }
-    }).then(res => {
-     if(res.ok)
-     {
-         return res.json();
-     }else{
-         return Promise.reject(res);
-     }
-    }).then(res => {
-     console.log(res);
-     btn.innerText = "Product added to cart!"
-     btn.onclick="";
-    }).catch(res => {
-     console.log("error");
-    })
-}
-    let off = Math.round(((arr[i].market_price - arr[i].sale_price)/arr[i].market_price) * 100);
-    let strike = document.createElement('s');
-    h5_2.innerText = `M.R.P.: ₹ ${arr[i].market_price}`;
-    strike.append(h5_2);
-    h5_3.innerText = `Sale price: ₹ ${arr[i].sale_price}`;
-    h5_4.innerText = `${off}% Off`
-    h5_5.innerText = `You are saving ₹ ${arr[i].market_price - arr[i].sale_price}`;
-    let infoDiv = document.createElement('div');
-    infoDiv.className='info';
-    infoDiv.append(h5, strike, h5_3, h5_4 , h5_5, btn);
+     createBodyForPoducts(response);
     
-    div.append(img, infoDiv);
-    img.src=arr[i].imageUrl[0];
-    h5.innerText=arr[i].productName;
-    document.getElementById("products").append(div);
-     }
+     
  
  })
 
@@ -163,8 +111,82 @@ if(cookie != "")
          return new Promise(reject);
      }
    }).then((response) => {
-      console.log(response)
+    //   console.log(response)
+    createBodyForPoducts(response);
    }).catch(response => {
      console.log(response);
    })
+ }
+
+
+ function createBodyForPoducts(response)
+ {
+   document.getElementById('products').innerHTML = "";
+    let arr = response;
+    for(let i=0 ; i<arr.length ; i++)
+    {
+        let div = document.createElement("div");
+        div.style.cursor="pointer";
+        
+
+   let img = document.createElement("img");
+
+   img.onclick = function ()
+   {
+      window.location=`productView.html?productId=${arr[i].productId}`
+
+   }
+
+
+   let h5 = document.createElement("p");
+   h5.className = 'title'
+   let h5_2 = document.createElement("p");
+   let h5_3 = document.createElement("p");
+   let h5_4 = document.createElement("p");
+   let h5_5 = document.createElement("p");
+   let btn = document.createElement("button");
+   btn.className = 'button'
+   btn.innerText = "Add to cart";
+
+
+   btn.onclick =  function (){
+
+   fetch(`http://localhost:8765/buy_EZ/user/add-cart?productId=${arr[i].productId}&quantity=1`, {
+    method: 'POST',
+    headers:{
+        'Content-type':'application/json',
+        'Authorization':`Bearer ${cookie}`
+    }
+   }).then(res => {
+    if(res.ok)
+    {
+        return res.json();
+    }else{
+        return Promise.reject(res);
+    }
+   }).then(res => {
+    console.log(res);
+    btn.innerText = "Product added to cart!"
+    btn.onclick="";
+   }).catch(res => {
+       window.location.href = "signup.html"
+   })
+}
+   let off = Math.round(((arr[i].market_price - arr[i].sale_price)/arr[i].market_price) * 100);
+   let strike = document.createElement('s');
+   h5_2.innerText = `M.R.P.: ₹ ${arr[i].market_price}`;
+   strike.append(h5_2);
+   h5_3.innerText = `Sale price: ₹ ${arr[i].sale_price}`;
+   h5_4.innerText = `${off}% Off`
+   h5_5.innerText = `You are saving ₹ ${arr[i].market_price - arr[i].sale_price}`;
+   let infoDiv = document.createElement('div');
+   infoDiv.className='info';
+   infoDiv.append(h5, strike, h5_3, h5_4 , h5_5, btn);
+   
+   div.append(img, infoDiv);
+   img.src=arr[i].imageUrl[0];
+   h5.innerText=arr[i].productName;
+   document.getElementById("products").append(div);
+    }
+
  }
