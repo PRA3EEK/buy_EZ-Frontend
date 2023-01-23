@@ -6,54 +6,106 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
 </head>
 <style>
     *{
         padding: 0;
         margin: 0;
+        font-family: 'Mukta', sans-serif;
+        /* box-sizing: border-box; */
+        color: #797979;
+    }
+    body{
+        background-color: #121212
+        ;
     }
     #pDiv{
-        border: 1px solid black;
         display: grid;
         grid-template-columns: 5% 30% 50%;
         /* height: 500px; */
         justify-content: space-around;
     }
     #pDiv>div{
-        border: 1px solid red;
-        height: auto;
+        /* border: 1px solid red; */
+        /* height: auto; */
     }
     #view{
         text-align: center;
     }
     #view>img{
        width: 60%;
-       border: 1px solid black;
        margin-top: 10px;
        cursor: pointer;
     }
     #image{
+        position: relative;
         display: grid;
         justify-content: space-around;
         align-items: center;
         text-align: center;
-        height: 500px;
+        height: 80vh;
+        margin-top: 7vh;
+      cursor: pointer;
+        transition: 0.5s;
+        box-shadow: rgb(0, 0, 0) 0px 7px 29px 0px;
+        padding: 0 5vh 0 5vh;
+        border-radius: 3vh;
+    }
+    #image:hover .btn{
+        display: block;
+        animation-name: btnSlideIn;
+        animation-duration: 0.75s;
     }
     #image>img{
         margin: auto;
         width: 90%;
-        border: 1px solid black;
     }
     #title{
-        border: 1px solid black;
-        width: 60%;
+       /* color: white; */
+        width: 100%;
     }
     #specs{
-        border: 1px solid red;
-        width: 40%;
+       
+        /* border: 1px solid red; */
+        width: 50%;
+    }
+    #details{
+        padding: 5vh;
+        /* background-color: #2d2d2d; */
     }
     #details>p{
         margin-top: 10px;
+    }
+    .btn{
+        width: 30%;
+        position: absolute;
+        right: 7vh;
+        background-color: #121212;
+        border: 1px solid white;
+        font-size: 100%;
+        border-radius: 1vh;
+        height: 5vh;
+        bottom: 4vh;
+        display: none;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+    .btn:hover{
+        background-color: #2d2d2d;
+        
+    }
+    @keyframes btnSlideIn{
+        from{
+            opacity: 0;
+            bottom: 0vh;
+        }
+        to{
+            opacity: 1;
+            bottom: 4vh;
+        }
     }
 </style>
 <body>

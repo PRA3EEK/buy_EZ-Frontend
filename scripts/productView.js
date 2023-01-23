@@ -27,20 +27,27 @@ fetch(`http://localhost:8765/buy_EZ/user/searchById?productId=${productId}`, {
         let img = document.createElement('img');
         img.src = images[i];
         imageView.append(img);
+        let addToCart = document.createElement('button');
+    addToCart.className = 'btn'
+    addToCart.innerText = 'Add To Cart'
 
         img.onclick = function () {
             document.getElementById('image').innerHTML = "";
             let copyImage = document.createElement('img');
             copyImage.src = images[i];
-            document.getElementById('image').append(copyImage);
+            document.getElementById('image').append(copyImage, addToCart);
         }
         
     }
     let bigImage = document.createElement('div');
     bigImage.id = 'image'
+    let addToCart = document.createElement('button');
+    addToCart.className = 'btn'
+    addToCart.innerText = 'Add To Cart'
     let firstImage = document.createElement('img');
     firstImage.src = images[0];
-    bigImage.append(firstImage);
+    bigImage.append(firstImage, addToCart);
+
     let productDetails = document.createElement('div');
     productDetails.id = 'details';
 
@@ -62,13 +69,15 @@ fetch(`http://localhost:8765/buy_EZ/user/searchById?productId=${productId}`, {
    let specs = document.createElement('p');
    specs.id='specs'
    specs.innerText = `About this item: \n\n${response.specification}`;
-   let manu = document.createElement('p');
-   manu.id='manu';
-   manu.innerText=`Manufacutrer:  ${response.manufacturer}`
+   let menu = document.createElement('p');
+   menu.id='manu';
+   menu.innerText=`Manufacutrer:  ${response.manufacturer}`
    let dim = document.createElement('p');
    dim.id='dim';
    dim.innerText=`Dimensions: ${response.dimension}`
-   productDetails.append(title, ratings, price, specs, manu, dim);
+
+
+   productDetails.append(title, ratings, price, specs, menu, dim);
  
 
    

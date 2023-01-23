@@ -23,6 +23,7 @@ if(cookie != "")
              {
                  let adminPageLink = document.createElement('a');
                  adminPageLink.innerText="Admin resources"
+                 adminPageLink.className = 'navLink';
                  adminPageLink.href="Admin.html";
                  
                  document.getElementById("Nav1").append(adminPageLink);

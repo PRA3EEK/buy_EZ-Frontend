@@ -52,6 +52,7 @@ let cookie = document.cookie;
             p10.innerText = "Address Details : "+details;
             let logOutBtn = document.createElement("button");
             logOutBtn.innerText = "Log out"
+            logOutBtn.className = 'btn';
             logOutBtn.onclick = function ()
             {
                 fetch('http://localhost:8765/buy_EZ/auth/logout', {
@@ -70,6 +71,7 @@ let cookie = document.cookie;
                 })
             }
             let myOrdersBtn = document.createElement('button');
+            myOrdersBtn.className = 'btn'
             myOrdersBtn.innerText = 'My orders';
             myOrdersBtn.onclick = function ()
             {
