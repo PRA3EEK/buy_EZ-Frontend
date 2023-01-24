@@ -42,14 +42,20 @@ let cookie = document.cookie;
 
             p1.innerText = "Customer id : "+userId;
             p2.innerText = "First Name : " +firstName;
+            p2.innerHTML += "<a href='updateDetails.html' class='link' value='updatefirstname'>Update first name</a>"
             p3.innerText = "Last Name : "+lastName;
+            p3.innerHTML += "<a href='updateDetails.html' class='link' value='updatelastname'>Update last name</a>"
             p4.innerText = "Username : "+username;
+            p4.innerHTML += "<a href='updateDetails.html' class='link' value='updateusername'>Update username</a>"
             p5.innerText = "Email : "+email;
+            p5.innerHTML += "<a href='updateDetails.html' class='link' value='updateemail'>Update email</a>"
             p6.innerText = "Mobile Number : "+phone;
+            p6.innerHTML += "<a href='updateDetails.html' class='link' value='updatephone'>Update contact</a>"
             p7.innerText = "Pincode : "+pincode;
             p8.innerText = "City : "+city;
             p9.innerText = "State : "+state;
             p10.innerText = "Address Details : "+details;
+            p10.innerHTML += "<a href='updateDetails.html' class='link' value='updateaddress'>Update address details</a>"
             let logOutBtn = document.createElement("button");
             logOutBtn.innerText = "Log out"
             logOutBtn.className = 'btn';
@@ -92,12 +98,13 @@ let cookie = document.cookie;
             }
             let div = document.createElement("div");
            div.append(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, logOutBtn, myOrdersBtn);
-           document.getElementById("userInfo").append(div);
+           document.getElementById("userDetails").append(div);
 
         }).catch(res => {
-            res.json().then(res => {
-                console.log(res);
-            })
+            // res.json().then(res => {
+            //     console.log(res);
+            // })
+          console.log(res);
         })
 
         

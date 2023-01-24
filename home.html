@@ -129,7 +129,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            height: 10%;
+            height: 5vw;
             position: fixed;
             background-color: #2a2a2a;
             top: 0;
@@ -225,6 +225,53 @@
                 visibility: visible;
             }
         }
+        #loader{
+            /* border: 1px solid white; */
+            color: white;
+            font-size: 2vw;
+            height: 5vw;
+            width: 6.5vw;
+            padding: 0.8vw 0 0 0.8vw;
+        }
+        #cart{
+            /* border: 1px solid white */
+            height: 5vw;
+            width: auto;
+            display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+        #cart>img{
+            height: 50%;
+        }
+        #loader>p{
+            /* border:  1px solid white; */
+
+            /* margin:  auto; */
+        }
+        
+        .loaderText{
+            /* border: 1px solid white; */
+            position: absolute;
+            transition: 2s;
+            /* animation: loaderAnimation 2s infinite; */
+        }
+        @keyframes loaderAnimation{
+            from{
+              transform: rotate(0deg);
+            } to{
+               transform: rotate(360deg);
+            }
+        }
+        #logo{
+            /* border: 1px solid white; */
+            width: 5vw;
+            height: 5vw;
+        }
+        #logo>img{
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -233,7 +280,13 @@
         <div id="Nav1">
             <a href="myaccount.html" class="navLink">My Account</a>
             <input type="search" placeholder="search products by name" id="searchBar">
-            <img src="001-bag.png" alt="cart" id="cart" onclick="redirect()">
+            <div id="cart" onclick="redirect()">
+                <img src="shopping-cart.png" alt="cart" id="cart"  >
+                <div id="loader">
+                    <p><span>B</span><span>U</span><span>Y</span><span>-</span><span>E</span><span>Z</span></p>
+                </div>
+            </div>
+
             <div id="sign">
                 <a href="signup.html" class="navLink">Sign up</a> |
                 <a href="signin.html" class="navLink">Sign in</a>
@@ -245,8 +298,9 @@
             </div>
         </div>
     </nav>
+    
     <div id="products">
-
+        
     </div>
 </body>
 

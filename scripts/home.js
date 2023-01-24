@@ -191,3 +191,25 @@ if(cookie != "")
     }
 
  }
+
+ let loader = document.getElementById('loader').childNodes;
+ 
+ let spans = loader[1].childNodes;
+ let margin = 0;
+ for(let i=0; i<spans.length ; i++)
+ {
+   spans[i].className = 'loaderText';
+   if(i!=0)
+   {
+
+       console.log(spans[i].previousSibling.offsetWidth);
+       console.log("==");
+       margin += spans[i].previousSibling.offsetWidth;
+       console.log(margin)
+       spans[i].style.marginLeft = margin+'px';
+   }
+
+ }
+ console.log(spans);
+
+ 
