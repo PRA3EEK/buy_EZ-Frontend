@@ -5,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
 </head>
 <style>
     *{
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-
+        font-family: 'Mukta', sans-serif;
     }
     body{
         background-color: #121212;
@@ -60,15 +63,29 @@
     .btn:hover{
         background-color: #2d2d2d;
     }
+    .links
+    {
+        color: #797979;
+        transition: 0.5s;
+
+    }
+    .links:hover{
+        color: white;
+    }
+    
 </style>
 <body>
     
    
+  
 
    <div id="userInfo">
       
        <div id="userDetails">
-
+          <h1>>_<</h1><h1>OOPS! looks like you are not registered or logged in to your account.</h1>
+          <div class="linksContainer">
+            <a href="signup.html" class="links">Sign up</a>|<a href="signin.html" class="links"> Sign in</a>
+          </div>
        </div>
 
    </div>

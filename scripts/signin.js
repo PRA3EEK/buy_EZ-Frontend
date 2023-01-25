@@ -1,3 +1,9 @@
+import { loaderHtml } from "./loader.js";
+import { loaderAnimation } from "./loader.js";
+
+// document.getElementById("logo").innerHTML += loaderHtml;
+//     loaderAnimation(); 
+
 let form = document.getElementById("signinForm");
 
     form.addEventListener('submit', (e) => {
@@ -40,14 +46,16 @@ let form = document.getElementById("signinForm");
 
       })
       .catch((response) => {
-        response.json().then(response => {
+
          let textResponse = document.createElement("h3");
          textResponse.innerText = response.message;
          document.getElementById('response').append(textResponse);
-        }
-        )
+        
+      
       // 3. get error messages, if any
     });
     })
     
-      
+    
+
+    

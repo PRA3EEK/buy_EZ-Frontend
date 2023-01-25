@@ -5,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
 </head>
 <style>
 *{
  padding: 0;
  margin: 0;
  box-sizing: border-box;
-
+ font-family: 'Mukta', sans-serif;
 }
 body{
     background-color: #121212;
@@ -51,10 +54,13 @@ body{
 #submit:hover{
     background-color: #2d2d2d;
 }
+#logo{
+    color: white;
+}
 </style>
 
 <body>
-    
+    <div id="logo"></div>
    <form action="" id="signinForm">
 
     <input type="text" placeholder="Customer id" required id="id" class="inputfield"><br>
@@ -69,7 +75,7 @@ body{
 
 </body>
 </html>
-<script src="/scripts/signin.js">
+<script type="module" src="/scripts/signin.js">
     
 
    

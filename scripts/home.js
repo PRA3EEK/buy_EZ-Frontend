@@ -1,3 +1,6 @@
+
+import { loaderAnimation } from "./loader.js";
+
 let cookie = document.cookie;
 let username = "";
 if(cookie != "")
@@ -29,7 +32,7 @@ if(cookie != "")
                  document.getElementById("Nav1").append(adminPageLink);
              }
          }
-         username = res.username;
+         username = res.username.toUpperCase();
          let p = document.createElement("P");
          p.innerText = username;
          document.getElementById("sign").append(p);
@@ -192,24 +195,8 @@ if(cookie != "")
 
  }
 
- let loader = document.getElementById('loader').childNodes;
- 
- let spans = loader[1].childNodes;
- let margin = 0;
- for(let i=0; i<spans.length ; i++)
- {
-   spans[i].className = 'loaderText';
-   if(i!=0)
-   {
+ console.log(loaderAnimation());
 
-       console.log(spans[i].previousSibling.offsetWidth);
-       console.log("==");
-       margin += spans[i].previousSibling.offsetWidth;
-       console.log(margin)
-       spans[i].style.marginLeft = margin+'px';
-   }
-
- }
- console.log(spans);
+//  console.log(spans);
 
  
