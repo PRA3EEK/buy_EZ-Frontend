@@ -10,10 +10,10 @@ function loaderAnimation(){
       if(i!=0)
       {
     
-          console.log(spans[i].previousSibling.offsetWidth);
-          console.log("==");
+          // console.log(spans[i].previousSibling.offsetWidth);
+          // console.log("==");
           margin += spans[i].previousSibling.offsetWidth;
-          console.log(margin)
+          // console.log(margin)
           spans[i].style.marginLeft = margin+'px';
       }
     

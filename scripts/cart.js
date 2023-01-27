@@ -124,6 +124,8 @@ else {
                     
                     
                     document.getElementById('amount').innerText="Total Amount : ₹ "+totalCartAmmount;
+                }).catch(response => {
+                    console.log(response);
                 })
                 
             }
