@@ -49,7 +49,7 @@ else {
                     h5.innerText = `${res.productName}`;
                     let p = document.createElement("p");
                     let btn = document.createElement("button");
-                    btn.className = 'remove'
+                    btn.className = 'btn'
                     btn.innerText = "Remove from cart";
                     btn.onclick = function (totalCartAmmount) 
                     {
@@ -87,7 +87,7 @@ else {
 
                     
                     let updateBtn = document.createElement('button');
-                    updateBtn.className = 'update'
+                    updateBtn.className = 'btn'
                     updateBtn.innerText = 'Update'
                     updateBtn.onclick = function ()
                     {
@@ -124,12 +124,20 @@ else {
                     
                     
                     document.getElementById('amount').innerText="Total Amount : ₹ "+totalCartAmmount;
+
                 }).catch(response => {
                     console.log(response);
+ 
+                    // let errorHeading = document.createElement("h1");
+ 
+                    // errorHeading.innerText = ''
+                    
                 })
                 
             }
            
+        }).catch(response => {
+            document.getElementById("content").innerHTML = "<div id='errorMessage'><h1>>_<</h1><h1>OOPS! looks like you are not registered or logged in to your account.</h1><div class='linksContainer'><a href='signup.html' class='links'>Sign up</a>|<a href='signin.html' class='links'> Sign in</a></div></div>"
         })
 
         function placeOrder()
