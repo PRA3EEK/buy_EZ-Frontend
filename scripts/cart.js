@@ -37,8 +37,8 @@ else {
                 }).then((res) => {
                     var cartPrice = 0;
                     cartPrice = (cartPrice + (products[i].quantity) * (res.sale_price));
-                   let parentDiv = document.createElement('div');
-                   parentDiv.className = 'parent'
+                    let parentDiv = document.createElement('div');
+                    parentDiv.className = 'parent'
                     let div = document.createElement("div");
                     div.className = 'image'
                     let quantityDiv = document.createElement("div");
@@ -51,16 +51,15 @@ else {
                     let btn = document.createElement("button");
                     btn.className = 'btn'
                     btn.innerText = "Remove from cart";
-                    btn.onclick = function (totalCartAmmount) 
-                    {
+                    btn.onclick = function (totalCartAmmount) {
                         fetch(`http://localhost:8765/buy_EZ/user/delete-cart?productId=${res.productId}`, {
                             method: 'DELETE',
-                            headers:{
+                            headers: {
                                 "Authorization": `Bearer ${cookie}`
                             }
                         }).then(res => {
-                            if(res.ok){return res.json()}
-                            else {return Promise.reject(res)};
+                            if (res.ok) { return res.json() }
+                            else { return Promise.reject(res) };
                         }).then(res => {
                             console.log(res);
                             window.location.reload();
@@ -79,31 +78,29 @@ else {
                     input.placeholder = 'Quantity...'
 
                     //creating dom to display sale price and market price.
-                    let off = Math.round(((res.market_price - res.sale_price)/res.market_price) * 100);
+                    let off = Math.round(((res.market_price - res.sale_price) / res.market_price) * 100);
                     let salePrice = document.createElement('p');
                     salePrice.innerText = `-${off}% ${res.sale_price}`
                     let strike = document.createElement('s');
-                    strike.innerText = `M.R.P.: ₹ ${res.market_price}` 
+                    strike.innerText = `M.R.P.: ₹ ${res.market_price}`
 
-                    
+
                     let updateBtn = document.createElement('button');
                     updateBtn.className = 'btn'
                     updateBtn.innerText = 'Update'
-                    updateBtn.onclick = function ()
-                    {
-                        
+                    updateBtn.onclick = function () {
+
                         console.log(input.value);
 
                         fetch(`http://localhost:8765/buy_EZ/user/update-quantity?productId=${id}&quantity=${input.value}`, {
-                            method:'PUT',
-                            headers:{
-                              'Authorization': `Bearer ${cookie}`
+                            method: 'PUT',
+                            headers: {
+                                'Authorization': `Bearer ${cookie}`
                             }
                         }).then((response) => {
-                            if(response.ok)
-                            {
+                            if (response.ok) {
                                 return response.json();
-                            }else{
+                            } else {
                                 console.log("error");
                             }
                         }).then(response => {
@@ -114,35 +111,34 @@ else {
                     let thirdDiv = document.createElement('div')
                     thirdDiv.className = 'thirdDiv'
                     thirdDiv.append(input, updateBtn, btn)
-                    quantityDiv.append(h5,p, price, salePrice, strike, thirdDiv);
+                    quantityDiv.append(h5, p, price, salePrice, strike, thirdDiv);
                     div.append(img);
                     parentDiv.append(div, quantityDiv)
                     document.getElementById('cart').append(parentDiv);
-                   
-                    
+
+
                     totalCartAmmount = totalCartAmmount + cartPrice;
-                    
-                    
-                    document.getElementById('amount').innerText="Total Amount : ₹ "+totalCartAmmount;
+
+
+                    document.getElementById('amount').innerText = "Total Amount : ₹ " + totalCartAmmount;
 
                 }).catch(response => {
                     console.log(response);
- 
+
                     // let errorHeading = document.createElement("h1");
- 
+
                     // errorHeading.innerText = ''
-                    
+
                 })
-                
+
             }
-           
+
         }).catch(response => {
             document.getElementById("content").innerHTML = "<div id='errorMessage'><h1>>_<</h1><h1>OOPS! looks like you are not registered or logged in to your account.</h1><div class='linksContainer'><a href='signup.html' class='links'>Sign up</a>|<a href='signin.html' class='links'> Sign in</a></div></div>"
         })
 
-        function placeOrder()
-        {
-            window.location = "order.html"
-        }
+    function placeOrder() {
+        window.location = "order.html"
+    }
 
 }

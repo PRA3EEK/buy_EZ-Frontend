@@ -16,32 +16,31 @@ fetch('http://localhost:8765/buy_EZ/user/subCategories',
             document.getElementById('cat').append(option);
         }
     });
-   
-    
 
-    // console.log(imgCopy);
-   var categoryName = "";
-    function test()
-    {
-        var selvalue = document.getElementById("cat");
-   var text = selvalue.options[selvalue.selectedIndex].text;
-     categoryName = text;
-    
-    }
-    
-   
-   let form = document.getElementById('productDetails');
-    form.addEventListener('submit', (e) => {
-          e.preventDefault();
 
-          var img_1 = form.img1.value;
+
+// console.log(imgCopy);
+var categoryName = "";
+function test() {
+    var selvalue = document.getElementById("cat");
+    var text = selvalue.options[selvalue.selectedIndex].text;
+    categoryName = text;
+
+}
+
+
+let form = document.getElementById('productDetails');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    var img_1 = form.img1.value;
     var img_2 = form.img2.value;
     var img_3 = form.img3.value;
     var img_4 = form.img4.value;
     var img_5 = form.img5.value;
     var img_6 = form.img6.value;
 
-          fetch(`http://localhost:8765/buy_EZ/admin/add-product/${categoryName}`, {
+    fetch(`http://localhost:8765/buy_EZ/admin/add-product/${categoryName}`, {
         method: 'POST',
         body: JSON.stringify({
             productName: form.name.value,
@@ -61,17 +60,17 @@ fetch('http://localhost:8765/buy_EZ/user/subCategories',
                 img_4,
                 img_5,
                 img_6
-        ]
+            ]
         }),
-        headers:{
-            'Content-type':'application/json',
+        headers: {
+            'Content-type': 'application/json',
             'Authorization': `Bearer ${cookie}`
         }
     }).then((response) => {
-        if(response.ok){
+        if (response.ok) {
             return response.json();
         }
-        else{
+        else {
             return Promise.reject(response);
         }
     }).then((response) => {
@@ -80,4 +79,4 @@ fetch('http://localhost:8765/buy_EZ/user/subCategories',
         form.reset();
         return false;
     })
-    })
+})

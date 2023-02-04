@@ -19,17 +19,16 @@ fetch(`http://localhost:8765/buy_EZ/user/searchById?productId=${productId}`, {
     var images = response.imageUrl;
 
     let imageView = document.createElement('div');
-     
+
     imageView.id = 'view';
-    for(let i=0; i<images.length; i++)
-    {
-        
+    for (let i = 0; i < images.length; i++) {
+
         let img = document.createElement('img');
         img.src = images[i];
         imageView.append(img);
         let addToCart = document.createElement('button');
-    addToCart.className = 'btn'
-    addToCart.innerText = 'Add To Cart'
+        addToCart.className = 'btn'
+        addToCart.innerText = 'Add To Cart'
 
         img.onclick = function () {
             document.getElementById('image').innerHTML = "";
@@ -37,7 +36,7 @@ fetch(`http://localhost:8765/buy_EZ/user/searchById?productId=${productId}`, {
             copyImage.src = images[i];
             document.getElementById('image').append(copyImage, addToCart);
         }
-        
+
     }
     let bigImage = document.createElement('div');
     bigImage.id = 'image'
@@ -51,38 +50,38 @@ fetch(`http://localhost:8765/buy_EZ/user/searchById?productId=${productId}`, {
     let productDetails = document.createElement('div');
     productDetails.id = 'details';
 
-   //product details are being added 
-   let title = document.createElement('h2');
-   title.id='title';
-   title.innerText = response.productName;
-   let ratings = document.createElement('p');
-   ratings.innerText = `${response.ratings}/5 stars ${response.numberOfRatings} ratings`;
-   
-   let off = Math.round(((response.market_price - response.sale_price)/response.market_price) * 100);
-   let price = document.createElement('p');
-   let strike = document.createElement('s');
-   strike.innerText = `M.R.P.:${response.market_price}`;
-   price.id = 'price';
-   price.innerText=`- ${off}% ₹ ${response.sale_price}\n`
-   price.append(strike)
-   
-   let specs = document.createElement('p');
-   specs.id='specs'
-   specs.innerText = `About this item: \n\n${response.specification}`;
-   let menu = document.createElement('p');
-   menu.id='manu';
-   menu.innerText=`Manufacutrer:  ${response.manufacturer}`
-   let dim = document.createElement('p');
-   dim.id='dim';
-   dim.innerText=`Dimensions: ${response.dimension}`
+    //product details are being added 
+    let title = document.createElement('h2');
+    title.id = 'title';
+    title.innerText = response.productName;
+    let ratings = document.createElement('p');
+    ratings.innerText = `${response.ratings}/5 stars ${response.numberOfRatings} ratings`;
+
+    let off = Math.round(((response.market_price - response.sale_price) / response.market_price) * 100);
+    let price = document.createElement('p');
+    let strike = document.createElement('s');
+    strike.innerText = `M.R.P.:${response.market_price}`;
+    price.id = 'price';
+    price.innerText = `- ${off}% ₹ ${response.sale_price}\n`
+    price.append(strike)
+
+    let specs = document.createElement('p');
+    specs.id = 'specs'
+    specs.innerText = `About this item: \n\n${response.specification}`;
+    let menu = document.createElement('p');
+    menu.id = 'manu';
+    menu.innerText = `Manufacutrer:  ${response.manufacturer}`
+    let dim = document.createElement('p');
+    dim.id = 'dim';
+    dim.innerText = `Dimensions: ${response.dimension}`
 
 
-   productDetails.append(title, ratings, price, specs, menu, dim);
- 
+    productDetails.append(title, ratings, price, specs, menu, dim);
 
-   
 
-   document.getElementById('pDiv').append(imageView, bigImage, productDetails);
+
+
+    document.getElementById('pDiv').append(imageView, bigImage, productDetails);
 }).catch(response => {
     document.getElementById('pDiv').append(document.createElement('h1').innerText = response);
 })
