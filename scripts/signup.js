@@ -127,12 +127,12 @@ form.addEventListener('submit', (e) => {
     }
 
   })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (body) {
-      console.log(body);
-    })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  })
  }
   
 

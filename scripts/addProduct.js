@@ -51,7 +51,9 @@ fetch('http://localhost:8765/buy_EZ/user/subCategories',
             dimension: form.dim.value,
             specification: form.specs.value,
             manufacturer: form.manu.value,
+
             quantity: form.quant.value,
+
             imageUrl: [
                 img_1,
                 img_2,
