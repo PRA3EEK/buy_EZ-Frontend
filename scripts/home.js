@@ -71,7 +71,9 @@ fetch('http://localhost:8765/buy_EZ/user/categories',
         }
     });
 
-fetch("http://localhost:8765/buy_EZ/user/products",
+  let pageNumber = 1;
+
+fetch(`http://localhost:8765/buy_EZ/user/products?page=${pageNumber}&size=5`,
     {
         headers: {
             "Authorization": `Bearer ${cookie}`
@@ -79,7 +81,7 @@ fetch("http://localhost:8765/buy_EZ/user/products",
     }).then(response => {
         return response.json();
     }).then(response => {
-        // console.log(response)
+        console.log(response)
 
         createBodyForPoducts(response);
 
