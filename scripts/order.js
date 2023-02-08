@@ -65,6 +65,7 @@ if (cookie != "") {
         details.id = 'details';
 
         var addressSubmit = document.createElement('input');
+        addressSubmit.className = 'button'
         addressSubmit.id = 'addressSubmit';
         addressSubmit.value = 'Update Address'
         addressSubmit.type = 'submit'
@@ -129,10 +130,11 @@ if (cookie != "") {
         })
     }
     paymentsAppear();
-
+ 
     function proceed() {
-        document.getElementById('paymentForm').style.visibility = 'visible';
-
+        if(paymentType != 'POD'){
+            document.getElementById('paymentForm').style.visibility = 'visible';
+        }
     }
 
 
@@ -140,7 +142,7 @@ if (cookie != "") {
     // console.log(address)
 
 
-    document.getElementById('right').insertAdjacentHTML('afterBegin', ' <h1>Order Summary</h1><p id="items"></p><s><p id="totalAmount"></p></s><p id="payAmount"></p><p id="msg"></p><button id="checkout" onclick="proceed()">Checkout</button>');
+    document.getElementById('right').insertAdjacentHTML('afterBegin', ' <h1>Cart Summary</h1><p id="items"></p><s><p id="totalAmount"></p></s><p id="payAmount"></p><p id="msg"></p><button id="checkout" class="button" onclick="proceed()">Checkout</button>');
     fetch('http://localhost:8765/buy_EZ/user/cart', {
         headers: {
             'Authorization': `Bearer ${cookie}`
@@ -161,10 +163,15 @@ if (cookie != "") {
         document.getElementById('msg').innerText = `You are saving : ₹ ${save}`;
     })
 
-
-
+    
+    document.getElementById('paymentForm').addEventListener('submit', (e) => {
+        
+        placeOrder(e);
+    })
+ 
     //function to process order
-    function placeOrder() {
+    function placeOrder(e) {
+        e.preventDefault() 
 
         if (address === null || paymentType == null) {
             document.getElementById('paymentForm').style.visibility = 'hidden';
@@ -174,16 +181,16 @@ if (cookie != "") {
             console.log(paymentType);
             fetch(`http://localhost:8765/buy_EZ/user/cart/order?paymentType=${paymentType}`, {
                 method: 'POST',
+                
                 body: JSON.stringify({
-                    address: {
-                        city: address.city,
-                        state: address.state,
-                        pincode: address.pincode,
-                        details: address.pincode
-                    }
+                        'city': address.city,
+                        'state': address.state,
+                        'pincode': address.pincode,
+                        'details': address.details
                 }),
                 headers: {
-                    'Authorization': `Bearer ${cookie}`
+                    'Authorization': `Bearer ${cookie}`,
+                    "Content-type": "application/json"
                 }
             }).then(response => {
                 if (response.ok) {
@@ -193,7 +200,7 @@ if (cookie != "") {
                     return Promise.reject(response);
                 }
             }).then(response => {
-                console.log(response);
+                window.location.href = `orderSummary.html?orderId=${response.orderId}`;
             }).catch(response => {
                 console.log('ERROR');
             })
@@ -211,5 +218,13 @@ if (cookie != "") {
         }
         this.value = foo;
     })
+    
+
+     document.getElementById("cross").addEventListener('click', () => {
+        document.getElementById('paymentForm').style.visibility = 'hidden';
+     })
+
 
 }
+
+

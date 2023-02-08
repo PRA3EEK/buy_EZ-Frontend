@@ -41,6 +41,7 @@ form.addEventListener('submit', (e) => {
 
       console.log(body.jwtToken + "; samesite=strict");
       document.cookie = name + "; " + expiry + "; Path=/";
+      window.location.href = 'home.html'
       //buyEZUserCookie=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmEzZWVrIiwiaWF0IjoxNjcyNzM5MjA5LCJleHAiOjE2NzI4MjU2MDl9.fytohyGaD_O9BmxFDHG0rbLtOILmtwyo9G7V6XFz-es; Path=/buy_EZ; Max-Age=86400; Expires=Wed, 04 Jan 2023 09:46:49 GMT
 
     })

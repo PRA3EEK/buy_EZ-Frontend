@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Mukta', sans-serif;
+
+
+        }
+        body{
+            background-color: #121212;
+            color: white;
+        }
+        #summary{
+            padding: 1vw;
+            font-size: 1.5vw;
+            letter-spacing: 0.15vw;
+            line-height: 3vw;
+        }
+        #summary>h1{
+            text-align: center;
+            margin: 3vw;
+        }
+    </style>
+</head>
+<body>
+    
+     <div id="summary">
+        <h1>Order placed successfully</h1>
+
+         <p id="orderId"></p>
+         <p id="totalAmount"></p>
+         <p id="orderDate"></p>
+         <p id="deliveryDate"></p>
+         <p id="paymentType"></p>
+         <p id="shipperDate"></p>
+         <p id="deliveryAddress"></p>
+         <p id="shipperName"></p>
+     </div>
+
+</body>
+</html>
+
+<script >
+
+ const cookie = document.cookie.split("=")[1];
+ const urlParams = new URLSearchParams(window.location.search);
+ const orderId = urlParams.get('orderId');
+
+ fetch(`http://localhost:8765/buy_EZ/user/orders`, {
+
+      method: 'GET',
+      headers:{
+       'Authorization': `Bearer ${cookie}`
+      }
+ }).then(res => {
+    if(res.ok){return res.json()};
+    return Promise.reject(res);
+ }).then(res => {
+    console.log(res);
+    let orders = res;
+    let result = null;
+   for(let ind in orders){
+     if(orders[ind].orderId == orderId) {
+        
+        result = orders[ind]
+        break;
+     }
+   }
+   console.log(result)
+   addDetails(result);
+ })
+ .catch(res => {console.log(res)});
+
+
+ function addDetails(order){
+   document.getElementById('orderId').innerText = `Order id: ${order.orderId}`
+   document.getElementById('totalAmount').innerText = `Total order amount: ₹${order.billAmount}`
+   document.getElementById('orderDate').innerText = `Order date: ${order.orderDate.split("T")[0]}, Time: ${order.orderDate.split("T")[1]}`
+   document.getElementById('deliveryDate').innerText = `Delivery date: ${order.deliveryDate}`
+   document.getElementById('paymentType').innerText = `Payment: ${order.payment.type}`
+   document.getElementById('shipperDate').innerText = `Ship date: ${order.shipDate}`
+   document.getElementById('deliveryAddress').innerText = `Delivery address: ${order.deliveryAddress.city +", "+ order.deliveryAddress.state +", "+ order.deliveryAddress.pincode +", "+ order.deliveryAddress.details}`
+   document.getElementById('shipperName').innerText = `Shipper name: ${order.shipper.companyName}`
+   
+ }
+ 
+
+
+     
+</script>
